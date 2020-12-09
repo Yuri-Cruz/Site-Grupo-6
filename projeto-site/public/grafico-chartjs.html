@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto IoT - Gráficos</title>
+    <link rel="stylesheet" href="css/dashboards.css">
+
+    <!-- script do google charts
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="js/funcoes.js"></script> -->
+
+    <!-- scripts do Chart.js -->
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
+    <script type="text/javascript" src="js/funcoes.js"></script>
+
+    <style>
+        /* Classes CSS para exemplos de alertas */
+
+        .normal {
+            background-color: #3c3c3c;
+        }
+
+        .alerta-alto {
+            background-color: rgb(180, 8, 8);
+        }
+
+        .alerta-baixo {
+            background-color: aquamarine;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!--header inicio-->
+
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo"><span class="highlight"> Luminous </span></h1>
+            <div class="usuario">
+                <h3>Olá, <b id="usuarioNome"></b></h3>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li> <a href="tempo-real.html">Tempo Real</a></li>
+                    <li><a href="#" class="highlight" onclick="logoff()">LOGOUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--header fim-->
+
+    <div class="dashboard">
+        <button class="btn" onclick="chamargraficos(1)">Sala 1</button>
+        <button class="btn" onclick="chamargraficos(2)">Sala 2</button>
+        <button class="btn" onclick="chamargraficos(5)">Sala 3</button>
+        <button class="btn" onclick="chamargraficos(6)">Sala 4</button>
+        <div style="width:75%; margin: auto">
+            <div id="div_aguarde">Dados sendo obtidos...</div>
+            <canvas id="canvas_grafico"></canvas>
+        </div>
+    </div>
+</body>
+
+
+
+</html>
+<script>
+
+    let proximaAtualizacao;
+
+    window.onload = obterDadosGraficoPrimeiraVez(1);
+
+
+    function chamargraficos(fkSensor) {
+
+        obterDadosGraficoPrimeiraVez(fkSensor)
+
+    }
+
+    verificar_autenticacao();
+
+    // neste JSON tem que ser 'labels', 'datasets' etc, 
+    // porque é o padrão do Chart.js
+
+
+
+    // altere aqui as configurações do gráfico
+    // (tamanhos, cores, textos, etc)
+    function configurarGrafico() {
+        var configuracoes = {
+            responsive: true,
+            // animation: { duration: 500 },
+            hoverMode: 'index',
+            stacked: true,
+            backgroundColor: 'black',
+            title: {
+                display: true,
+                text: 'Histórico recente de lumens'
+            },
+            scales: {
+                yAxes: [{
+                    type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                    display: true,
+                    position: 'left',
+                    id: 'y-lumens',
+                },],
+            }
+        };
+
+        return configuracoes;
+    }
+
+    // altere aqui como os dados serão exibidos
+    // e como são recuperados do BackEnd
+    function obterDadosGraficoPrimeiraVez(fkSensor) {
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/dados/ultimas/${fkSensor}`, { cache: 'no-store' })
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        // console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        resposta.reverse();
+
+                        var dados = {
+                            labels: [],
+                            datasets: [
+                                {
+                                    yAxisID: 'y-lumens',
+                                    label: 'lumens',
+                                    borderColor: window.chartColors.yellow,
+                                    backgroundColor: window.chartColors.yellow,
+                                    fill: false,
+                                    data: []
+                                }
+                            ]
+                        };
+                        var teste = resposta[1]
+                        for (i = 0; i < teste.length; i++) {
+                            var registro = teste[i];
+                            dados.labels.push(registro.momento_grafico);
+                            dados.datasets[0].data.push(registro.lumens);
+                        }
+                        // console.log(JSON.stringify(dados));
+                        div_aguarde.style.display = 'none';
+                        plotarGrafico(dados, fkSensor);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+
+
+    // só mexer se quiser alterar o tempo de atualização
+    // ou se souber o que está fazendo!
+    function atualizarGrafico(fkSensor, dados) {
+
+        fetch(`/dados/tempo-real/${fkSensor}`, { cache: 'no-store' }).then(function (response) {
+            // console.log("Estou tentando pegar fkSensor = ", fkSensor)
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    // console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    // console.log(dados);
+                    // tirando e colocando valores no gráfico
+                    dados.labels.shift(); // apagar o primeiro
+                    dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
+                    dados.datasets[0].data.shift();  // apagar o primeiro de lumens
+                    dados.datasets[0].data.push(novoRegistro.lumens); // incluir uma nova leitura de lumens
+
+                    // console.log("meu sensor é o " + fkSensor)
+
+                    window.grafico_linha.update();
+
+
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(fkSensor, dados), 5000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(fkSensor, dados), 5000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    var cont = 0
+    // só altere aqui se souber o que está fazendo!
+    function plotarGrafico(dados, fkSensor) {
+        // console.log('iniciando plotagem do gráfico...');
+
+        if (cont == 0) {
+            var ctx = canvas_grafico.getContext('2d');
+            window.grafico_linha = Chart.Line(ctx, {
+                data: dados,
+                options: configurarGrafico()
+            });
+            cont++
+        } else {
+            window.grafico_linha.config.data.datasets[0].data = [];
+            window.grafico_linha.config.data.labels = [];
+            var ctx = canvas_grafico.getContext('2d');
+            window.grafico_linha = Chart.Line(ctx, {
+                data: dados,
+                options: configurarGrafico()
+            });
+        }
+        console.log(window.grafico_linha.config.data)
+        setTimeout(() => atualizarGrafico(fkSensor, dados), 2000);
+    }
+
+
+    function sendData() {
+        var http = new XMLHttpRequest();
+        http.open('GET', 'http://localhost:9000/api/sendData', false);
+        http.send(null);
+    }
+
+    setInterval(() => {
+        sendData();
+    }, 5000);
+
+
+
+</script>

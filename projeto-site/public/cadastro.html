@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar-footer.css">
+    <link rel="stylesheet" href="css/stylecadastro.css">
+    <title>cadastro</title>
+</head>
+
+<body>
+    <!-- navbar -->
+    <header class="navbar">
+        <div class="container2">
+            <div class="logo">
+                <img src="img/logo.png">
+                <h1>LUMINOUS</h1>
+            </div>
+            <ul>
+                <li><a href="index.html">home</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </header>
+    <!-- cadastro parte 1 -->
+    <main class="main">
+        <div class="container">
+
+            <div class="mainContainer" id="form1">
+                <h1>Cadastre seu usuario</h1>
+                <ul id="menssagemErro1" class="menssagemErro invisivel"></ul>
+                <form id="formUsuario" method="post" class="form">
+                    <div class="halfBox spacing">
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" id="email" placeholder="Digite seu E-mail">
+                    </div>
+                    <div class="halfBox">
+                        <label for="email">Comfirmação de email:</label>
+                        <input type="text" id="comfirmacaoEmail" placeholder="Comfirme seu E-mail">
+                    </div>
+                    <div class="halfBox spacing">
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome" placeholder="Digite seu nome">
+                    </div>
+                    <div class="halfBox">
+                        <label for="sobrenome">Sobrenome:</label>
+                        <input type="text" name="sobrenome" id="sobrenome" placeholder="Digite seu sobrenome">
+                    </div>
+                    <div class="halfBox spacing">
+                        <label for="senha">Senha:</label>
+                        <input type="password" name="senha" id="senha" placeholder="Digite sua senha">
+                    </div>
+                    <div class="halfBox">
+                        <label for="confirmacaoDeSenha">Confirmação de senha:</label>
+                        <input type="password" id="confirmacaoDeSenha" placeholder="Digite novamente sua senha">
+                    </div>
+                    <div class="fullBox">
+                        <input type="checkbox" name="termosDeUso" id="termosDeUso">
+                        <label for="termosDeUso" id="termosDeUso-label">Eu li e Aceito os <a href="#">termos de
+                                uso</a></label>
+                    </div>
+                    <div class="fullBox">
+                        <input type="submit" id="btNext" value="Avançar">
+                    </div>
+                    <input name="cnpjj" id="cnpjj" style="display: none;">
+                </form>
+            </div>
+
+            <!-- cadastro parte 2 -->
+            <div class="mainContainer template" id="form2">
+                <h1>Cadastre sua empresa</h1>
+                <ul id="menssagemErro2" class="menssagemErro invisivel"></ul>
+                <form id="formEmpresa" class="form">
+                    <div class="halfBox spacing">
+                        <label for="nomeEmpresa">Nome Empresa:</label>
+                        <input type="text" name="nomeEmpresa" id="nomeEmpresa"
+                            placeholder="Digite o nome de sua empresa">
+                    </div>
+                    <div class="halfBox">
+                        <label for="cnpj">CNPJ:</label>
+                        <input type="number" name="cnpj" id="cnpj" placeholder="Digite seu CNPJ">
+                    </div>
+                    <div class="halfBox spacing">
+                        <label for="telefone">Telefone 1:</label>
+                        <input type="number" name="telefonePrincipal" id="telefone1" placeholder="Digite seu telefone">
+                    </div>
+                    <div class="halfBox">
+                        <label for="telefone">Telefone 2:</label>
+                        <input type="number" name="telefoneSecundario" id="telefone2" placeholder="Digite seu telefone">
+                    </div>
+                    <div class="halfBox spacing">
+                        <label for="cep">Cep:</label>
+                        <input type="number" name="cep" id="cep" placeholder="Digite seu Cep">
+                    </div>
+                    <div class="halfBox">
+                        <label for="bairro">bairro:</label>
+                        <input type="text" name="bairro" id="bairro" placeholder="Digite sua rua">
+                    </div>
+                    <div class="fullBox">
+                        <label for="logradouro">Logradouro:</label>
+                        <input type="text" name="logradouro" id="logradouro" placeholder="Digite sua rua">
+                    </div>
+                    <div class="halfBox spacing">
+                        <label for="numero">Numero:</label>
+                        <input type="number" name="numero" id="numero" placeholder="Digite seu numero">
+                    </div>
+                    <div class="halfBox">
+                        <label for="complemento">Complemento:</label>
+                        <input type="text" name="complemento" id="complemento" placeholder="Digite seu complemento">
+                    </div>
+                    <div class="halfBox spacing">
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" name="cidade" id="cidade" placeholder="Digite sua cidade">
+                    </div>
+                    <div class="halfBox">
+                        <label for="estado">Estado:</label>
+                        <input type="text" name="estado" id="estado" placeholder="Digite seu estado">
+                    </div>
+                    <div class="fullBox">
+                        <input type="submit" id="btSingUp" value="Finalizar">
+                    </div>
+                    <input type="text" id="planoEscolhido" name="plano" style="display: none;">
+                </form>
+            </div>
+
+            <!-- planos -->
+            <div class="caixas" id="form3" style="display: none;">
+                <div class="box" onclick="filnalizarCadastro(1)">
+                    <div>
+                        <span class="titulo">
+                            <h4>PLANO BASICO</h4>
+                        </span>
+                        <p>
+                            Tempo de funcionamento: 24H <br>
+                            Salas monitoradas: até 5 <br>
+                            Relatórios trimestrais <br>
+                            Instalação: Não incluso <br>
+                            Preço: 2.000,00 R$
+                        </p>
+                    </div>
+                </div>
+                <div class="box" onclick="filnalizarCadastro(2)">
+                    <div>
+                        <span class="titulo">
+                            <h4>PLANO NORMAL</h4>
+                        </span>
+                        <p>
+                            Tempo de funcionamento: 24H <br>
+                            Salas monitoradas: até 10 <br>
+                            Relatórios mensais <br>
+                            Instalação: Não incluso <br>
+                            Preço: 3.500,00 R$
+                        </p>
+                    </div>
+                </div>
+                <div class="box" onclick="filnalizarCadastro(3)">
+                    <div>
+                        <span class="titulo">
+                            <h4>PLANO PREMIUM</h4>
+                        </span>
+                        <p>
+                            Tempo de funcionamento: 24H <br>
+                            Salas monitoradas: até 15 <br>
+                            Relatórios semanais <br>
+                            Instalação: Incluso <br>
+                            Preço: 5.000,00 R$
+                        </p>
+                    </div>
+                </div>
+                <div class="box" onclick="filnalizarCadastro(4)">
+                    <div>
+                        <span class="titulo">
+                            <h4>PLANO PERSONALIZADO</h4>
+                        </span>
+                        <p>
+                            Tempo de funcionamento: 24H <br>
+                            Salas monitoradas: 16 ou + <br>
+                            Relatórios: a combinar <br>
+                            Instalação: Incluso <br>
+                            Preço: a partir de 5.000,00 R$
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Começo rodapé -->
+    <!-- Começo rodapé -->
+    <footer class="footer">
+        <div class="container2">
+            <div class="logo">
+                <img src="img/logo.png">
+                <h2>LUMINOUS</h2>
+            </div>
+            <a href="faq.html" style="text-decoration: none;">FAQ</a>
+            <span class="copyright">© 2020 copyright - Luminous</span>
+        </div>
+    </footer>
+    <!-- Fim Rodapé -->
+</body>
+
+</html>
+
+<script src="js/validacaoCadastro.js"></script>

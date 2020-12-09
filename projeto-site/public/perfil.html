@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashbord</title>
+    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dash.css">
+    <link rel="stylesheet" href="css/navbar-footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script type="text/javascript" src="js/funcoes.js"></script>
+</head>
+<script>
+
+    let usuario;
+
+    verificar_autenticacao();
+
+
+</script>
+
+<body onload="verificar_autenticacao()">
+
+    <!-- navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="img/logo.png">
+            <h1>LUMINOUS</h1>
+        </div>
+        <ul>
+            <li><a href="index.html">home</a></li>
+            <li><a onclick="logoff()">Sair</a></li>
+        </ul>
+        </div>
+    </header>
+
+    <!-- fim Navbar-->
+
+    <!-- Content -->
+    <main class="main">
+        <div class="userInfo">
+            <img src="img/avatar.png">
+            <h3>Seja bem vindo <span id="usuarioNome"></span></h3>
+        </div>
+        <div class="sensors">
+            <div class="boxSensors">
+
+            </div>
+            <div class="boxSensors">
+
+            </div>
+            <div class="boxSensors">
+            </div>
+
+            <div class="boxSensors">
+
+            </div>
+            <div class="boxSensors">
+
+            </div>
+            <div class="boxSensors">
+            </div>
+
+            <div class="boxSensors">
+
+            </div>
+            <div class="boxSensors">
+
+            </div>
+            <div class="boxSensors">
+            </div>
+        </div>
+
+
+    </main>
+    <!--Fim content-->
+
+    <!-- Começo rodapé -->
+    <footer class="footer">
+        <div class="container2">
+            <div class="logo">
+                <img src="img/logo.png">
+                <h2>LUMINOUS</h2>
+            </div>
+            <a href="faq.html" style="text-decoration: none;">FAQ</a>
+            <span class="copyright">© 2020 copyright - Luminous</span>
+        </div>
+    </footer>
+    <!-- Fim Rodapé -->
+</body>
+
+</html>
+
+<script>
+
+
+
+</script>

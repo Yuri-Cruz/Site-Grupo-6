@@ -1,0 +1,208 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: #fdfbfb;
+}
+
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* CABEÇALHO */
+
+.header {
+    background-color: #3c3c3c;
+    border-right: 3px solid yellow;
+    width: 20%;
+    height: 100%;
+    position: fixed;
+}
+
+.header .container .highlight {
+    color: rgb(255, 238, 81)
+}
+
+.usuario {
+    width: 75%;
+    overflow: hidden;
+    margin: auto;
+    text-align: center;
+    color: white;
+}
+
+.usuario h3 {
+    font-weight: 100;
+}
+
+.header h1 {
+    margin: 0;
+    padding: 0;
+    float: left;
+    margin: 35px;
+    color: white;
+    font-size: 25px;
+    padding-bottom: 50px;
+    border-bottom: 2px solid yellow;
+}
+
+.header ul {
+    list-style-type: none;
+    float: left;
+    margin-top: 40px;
+}
+
+.header li {
+    margin: 0 0 30px 0;
+}
+
+.header a {
+    text-transform: uppercase;
+    color: white;
+}
+
+.header a:hover {
+    font-weight: bold;
+    color: yellow;
+}
+
+.header .current {
+    color: orangered;
+    font-weight: bold;
+}
+
+.btn{
+    border: none;
+    border-radius: 6px;
+    background-color: #3c3c3c;
+    color: white;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: yellow;
+    color: black;
+    transition: 400ms;
+}
+
+/* FOOTER */
+
+.footer {
+    background-color: rgb(255, 95, 37);
+    text-align: center;
+    height: 100px;
+}
+
+.footer h4 {
+    color: white;
+    font-weight: 100;
+    margin: 0;
+    padding-top: 40px;
+}
+
+
+
+/* dashboard */
+
+.dashboard {
+    background-color: #fcf8f8;
+    text-align: center;
+    padding: 50px 0;
+    width: 80%;
+    height: 100%;
+    margin-left: auto;
+}
+
+.dashboard h1 {
+    margin-bottom: 40px;
+}
+
+.dashboard .input-padrao {
+    width: 50%;
+    display: inline-block;
+}
+
+.box-login {
+    display: inline-block;
+    background-color: white;
+    box-shadow:  3px 3px 5px 2px #ccc;
+    padding: 60px 20px 0px 20px;
+    border-radius: 20px;
+    width: 400px;
+}
+
+.dashboard .btn-green {
+    display: block;
+    float: none;
+    margin: auto;
+}
+
+/* EXTRA */
+
+.extra {
+    margin: 10px;
+}
+
+.extra img {
+  height: 50px;
+   visibility: hidden;
+}
+
+.extra .msg_erro {
+    background-color: sandybrown; 
+    color: black; 
+    visibility: hidden;
+}
+
+.sala {
+    border-radius: 10px;
+    display: block;
+    width: 35%;
+    margin: 10px 7%;
+    height: 160px;
+    float: left;
+    text-align: center;
+    color: white;
+    background-color:#3c3c3c;
+    box-shadow:  3px 3px 5px 2px #ccc;
+    
+}
+
+.borda {
+    border: 5px solid #f7e70b;
+}
+
+.bordaAlertaAlto {
+    border-color: red;
+}
+
+.bordaAlertaBaixo {
+    border-color: #241178;
+}
+
+.sala .valores {
+    margin:auto;
+    overflow: auto;
+}
+
+.sala .valores .valor {
+    width: 100%;
+}
+
+.sala .alertas {
+    width:100%;
+    margin:auto;
+    margin-top: 5px;
+    overflow: auto;
+}
+
+.sala .alertas .alerta {
+    width: 100%;
+}
+
