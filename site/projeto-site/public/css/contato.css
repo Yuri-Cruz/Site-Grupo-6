@@ -1,0 +1,69 @@
+/* Começo CSS Contato */
+
+.contato {
+    border-bottom: #f7e70b 2px solid;
+    height: 600px;
+    background: #adadad url(../img/background-contato.jpg) no-repeat scroll;
+    background-size: cover;
+}
+
+.contatoBox {
+    margin-left: 78px;
+    margin-top: 0;
+    color: #f7e70b;
+    width: 80%;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    padding-top: 50px;
+}
+
+.contat {
+    background: rgb(255, 255, 255);
+    border-radius: 8px;
+    color: #000000;
+    font: 400 17px;
+    font-size: 17px;
+    height: 40px;
+    margin-bottom: 24px;
+    padding-left: 10px;
+    width: 20%;
+    display: block;
+}
+
+.msg {
+    background: #fff;
+    border-radius: 8px;
+    color: #000000;
+    font: 400 17px;
+    font-size: 17px;
+    height: 100px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    width: 35%;
+}
+
+.botao {
+    background-color: #111111;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+    margin-top: 24px;
+}
+
+.contato textarea {
+    font-size: 17px;
+    padding: 10px;
+}
+
+.botao:hover,
+.botao:active {
+    background-color: #363636;
+    color: yellow;
+    transition: .5s all;
+    transform: scale(1.2);
+}
