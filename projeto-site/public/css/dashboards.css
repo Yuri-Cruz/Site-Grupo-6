@@ -179,11 +179,11 @@ a {
 }
 
 .bordaAlertaAlto {
-    border-color: red;
+    border-color: rgb(253, 46, 46);
 }
 
 .bordaAlertaBaixo {
-    border-color: #241178;
+    border-color: #502ded;
 }
 
 .sala .valores {
